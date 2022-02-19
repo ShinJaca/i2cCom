@@ -36,7 +36,7 @@ word i2cCom::readTwoBytes(int regAddr, byte devAddr)
  */
 word i2cCom::readTwoBytes(int regAddr)
 {
-    readTwoBytes(regAddr, _address);
+    return readTwoBytes(regAddr, _address);
 };
 
 /**
