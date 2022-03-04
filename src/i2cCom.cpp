@@ -39,6 +39,14 @@ word i2cCom::readTwoBytes(int regAddr)
     return readTwoBytes(regAddr, _address);
 };
 
+/**
+ * @brief Requests the read of one byte from the specified device and register
+ * address
+ *
+ * @param regAddr register address
+ * @param devAddr device address
+ * @return byte
+ */
 byte i2cCom::readByte(int regAddr, byte devAddr)
 {
     Wire.beginTransmission(devAddr);
@@ -52,6 +60,15 @@ byte i2cCom::readByte(int regAddr, byte devAddr)
     return 0;
 }
 
+/**
+ * @brief Requests and reads the n bytes from the specified device and register addresses
+ * into the byte array output
+ *
+ * @param regAddr register address
+ * @param devAddr device address
+ * @param n number of bytes to be read
+ * @param output destiny array for bytes results
+ */
 void i2cCom::readNBytes(byte regAddr, byte devAddr, int n, byte output[])
 {
     Wire.beginTransmission(devAddr);
@@ -62,8 +79,8 @@ void i2cCom::readNBytes(byte regAddr, byte devAddr, int n, byte output[])
 
     for (int i = 0; i < n; i++)
     {
-        output[i]=Wire.read();
-    }  
+        output[i] = Wire.read();
+    }
 }
 
 /**
