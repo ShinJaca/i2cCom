@@ -17,14 +17,29 @@ _TODO:_ instalation via arduino IDE.
 #include <i2cCom.h>
 
 // Instanciates an object with the device address set to 0x68
-i2cCom myi2c(0x68);
+i2cCom myi2c1(0x68);
 // or without any address, the device address will be specified in the functions
-i2cCom myi2c();
+i2cCom myi2c2();
 
 void setup()
 {
     // Wire must be iniciated
     Wire.begin();
+}
+
+void loop()
+{
+    // Writes one byte (0b00001010) to the register (0x1B)
+    myi2c1.writeOneByte(0x1B, 0b00001010);
+    
+    // Reads one byte from the register (0x1B) into the constant
+    const byte b = myi2c1.readByte(0x1B);
+    // Reads two bytes from the register (0x1D) and concatenates into the constant
+    const word c = myi2c1.readTwoBytes(0x1D);
+
+    // Reads n bytes ( 2 ), and stores each byte into the array ( arr )
+    byte arr[2];
+    myi2c1.readNBytes(0x1D, 2, arr);
 }
 ```
 
