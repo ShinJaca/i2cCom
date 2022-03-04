@@ -7,7 +7,7 @@ It provides some functions to read and write bytes to periferals more directly b
 
 Using Platformio, just download this repository into the `lib` folder.
 ```bash
-git clone https://github.com/ShinJaca/i2cCom /[your_project_diretory]/lib/i2cCom.git
+git clone https://github.com/ShinJaca/i2cCom.git /[your_project_diretory]/lib/i2cCom
 ```
 _TODO:_ instalation via arduino IDE.
 
