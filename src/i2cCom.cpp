@@ -60,6 +60,11 @@ byte i2cCom::readByte(int regAddr, byte devAddr)
     return 0;
 }
 
+byte i2cCom::readByte(int regAddr)
+{
+    return readByte(regAddr, _address);
+}
+
 /**
  * @brief Requests and reads the n bytes from the specified device and register addresses
  * into the byte array output
@@ -81,6 +86,19 @@ void i2cCom::readNBytes(byte regAddr, byte devAddr, int n, byte output[])
     {
         output[i] = Wire.read();
     }
+}
+
+/**
+ * @brief Requests and reads the n bytes from the specified device and register addresses
+ * into the byte array output
+ *
+ * @param regAddr register address
+ * @param n number of bytes to be read
+ * @param output destiny array for bytes results
+ */
+void i2cCom::readNBytes(byte regAddr, int n, byte output[])
+{
+    readNBytes(regAddr, _address, n, output);
 }
 
 /**
@@ -113,6 +131,11 @@ i2cCom::i2cCom(void){
 
 };
 
+/**
+ * @brief Tries a conection at the specified address and returns its status
+ *
+ * @return uint8_t test result
+ */
 uint8_t i2cCom::testAddress()
 {
     testAddress(_address);
@@ -136,6 +159,11 @@ uint8_t i2cCom::testAddress(byte devAddr)
  * @param devAddr device address
  */
 i2cCom::i2cCom(int devAddr)
+{
+    _address = devAddr;
+}
+
+void i2cCom::setDevAddress(int devAddr)
 {
     _address = devAddr;
 };
